@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book List | Index</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 50px;
+      }
+      a {
+        color: rgb(34, 34, 34);
+      }
+      h3 {
+        margin: 0;
+      }
+      h5 {
+        margin: 0 0 10px 0;
+      }
+
+      #edit-a {
+        background-color: rgb(41, 62, 77);
+        color: white;
+        padding: 4px 30px;
+        text-decoration: none;
+        font-size: 14px;
+      }
+      form input {
+        border: none;
+        margin: 6px 0 30px 0;
+        background-color: rgb(188, 35, 35);
+        color: white;
+        padding: 4px 30px;
+      }
+    </style>
+  </head>
+  <a href="books/new">Add a new book</a>
+  <nav></nav>
+  <body>
+    <h1>Books index page</h1>
+    <ul>
+      <% books.forEach(book => { %>
+      <h3>
+        <a href="/books/<%= book._id %>"><%=book.title; %></a>
+      </h3>
+      <h5>Written by <%=book.author; %></h5>
+      <a id="edit-a" href="/books/<%= book._id %>/edit">Edit</a>
+      <form action="/books/<%= book._id %>?_method=DELETE " method="POST">
+        <input type="submit" value="Delete" />
+      </form>
+      <!-- '?_method=delete' is known as a 'query string' -->
+      <% }) %>
+    </ul>
+  </body>
+</html>
